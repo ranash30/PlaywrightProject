@@ -64,7 +64,7 @@ test("Sanity test for Login and Checkout Flow", async ({ page }) => {
   expect(overviewItemCount).toBe(2); 
 
   
-  await page.click('[data-test="finish"]');
+  await page.locator('[data-test="finish"]'). click ()
 
  
   await expect(page).toHaveURL('https://www.saucedemo.com/checkout-complete.html');
@@ -76,7 +76,7 @@ test("Sanity test for Login and Checkout Flow", async ({ page }) => {
   expect(completeText2).toBe('Your order has been dispatched, and will arrive just as fast as the pony can get there!');
 
  
-  await page.click('[data-test="Back Home"]');
+  await page.locator('[data-test="Back Home"]').click()
 
 
  
