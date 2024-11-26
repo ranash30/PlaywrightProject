@@ -17,7 +17,7 @@ users.forEach((user) => {
     
     await page.fill('#user-name', user.username);  
     await page.fill('#password', user.password);    
-    await page.click('#login-button');               
+    await page.locator('#login-button').click()            
 
     
     await page.waitForSelector('.inventory_list');

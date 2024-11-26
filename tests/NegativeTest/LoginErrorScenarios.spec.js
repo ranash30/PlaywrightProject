@@ -9,7 +9,7 @@ test.describe('Login Scenarios', () => {
    
     await page.fill('#user-name', 'locked_out_user');
     await page.fill('#password', 'secret_sauce');
-    await page.click('#login-button');
+    await page.locator('#login-button').click()
     
     
     const errorMessage = await page.locator('.error-message-container').textContent();
@@ -34,7 +34,7 @@ test.describe('Login Scenarios', () => {
      
       await page.fill('#user-name', username);
       await page.fill('#password', password);
-      await page.click('#login-button');
+      await page.locator('#login-button').click()
 
       
       const errorMessage = await page.locator('.error-message-container').textContent();

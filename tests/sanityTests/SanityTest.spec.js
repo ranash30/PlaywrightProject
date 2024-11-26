@@ -7,7 +7,7 @@ test("Sanity test for Login and Checkout Flow", async ({ page }) => {
   
   await page.fill('#user-name', 'standard_user');  
   await page.fill('#password', 'secret_sauce');    
-  await page.click('#login-button');              
+  await page.locator('#login-button').click()            
 
   
   await page.waitForSelector('.inventory_list');   
@@ -30,7 +30,7 @@ test("Sanity test for Login and Checkout Flow", async ({ page }) => {
   expect(cartItemCount).toBe('2'); 
 
   
-  await page.click('.shopping_cart_link');
+  await page.locator('.shopping_cart_link').click()
 
   
   await expect(page).toHaveURL('https://www.saucedemo.com/cart.html');
@@ -42,7 +42,7 @@ test("Sanity test for Login and Checkout Flow", async ({ page }) => {
   expect(cartItemCountInCart).toBe(2); 
 
   
-  await page.click('[data-test="checkout"]');
+  await page.locator('[data-test="checkout"]').click()
 
   
   await expect(page).toHaveURL('https://www.saucedemo.com/checkout-step-one.html');
@@ -52,7 +52,7 @@ test("Sanity test for Login and Checkout Flow", async ({ page }) => {
   await page.fill('#first-name', 'John');    
   await page.fill('#last-name', 'Doe');     
   await page.fill('#postal-code', '12345'); 
-  await page.click('[data-test="continue"]'); 
+  await page.locator('[data-test="continue"]').click()
 
  
   await expect(page).toHaveURL('https://www.saucedemo.com/checkout-step-two.html');
