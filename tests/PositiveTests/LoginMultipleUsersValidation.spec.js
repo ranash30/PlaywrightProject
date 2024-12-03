@@ -20,7 +20,7 @@ users.forEach((user) => {
     await page.locator('#login-button').click()            
 
     
-    await page.waitForSelector('.inventory_list'); // why are you need to wait for a locator? please explain.
+    const inventoryList = page.locator('.inventory_list');
 
    
     await expect(page).toHaveURL('https://www.saucedemo.com/inventory.html');

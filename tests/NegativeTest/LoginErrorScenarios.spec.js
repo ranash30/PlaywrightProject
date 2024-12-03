@@ -6,16 +6,22 @@ test.describe('Login Scenarios', () => {
   }) => {
     await page.goto('https://www.saucedemo.com/')
 
-    await page.fill('#user-name', 'locked_out_user') // this type of action is deprecated. please follow my playwright presentation in the "Actions Subject". (Deprecated means that this way of doing an action is not in use anymore).
-    await page.fill('#password', 'secret_sauce') // Same here
-    await page.locator('#login-button').click()
+    const userNameInput = page.locator('#user-name');
+const passwordInput = page.locator('#password');
+const loginButton = page.locator('#login-button');
 
-    const errorMessage = await page // This is clearly now what i taught in the class. font use chatgpt anymore.
-      .locator('.error-message-container')
-      .textContent()
-    expect(errorMessage).toBe( // toBe is validation for Jest framework. this is not a playwright assertion.
-      'Epic sadface: Sorry, this user has been locked out.',
-    )
+
+await userNameInput.fill('locked_out_user');
+await passwordInput.fill('secret_sauce');
+
+
+await loginButton.click();
+
+
+const errorMessage = await page.locator('.error-message-container').textContent();
+
+await expect(errorMessage).toContainText('Epic sadface: Sorry, this user has been locked out.');
+
   })
 
   const loginScenarios = [
@@ -60,14 +66,25 @@ test.describe('Login Scenarios', () => {
     }) => {
       await page.goto('https://www.saucedemo.com/')
 
-      await page.fill('#user-name', username)  // this type of action is deprecated. please follow my playwright presentation in the "Actions Subject". (Deprecated means that this way of doing an action is not in use anymore).
-      await page.fill('#password', password) // Same here
-      await page.locator('#login-button').click()
+   
+const userNameInput = page.locator('#user-name');
+const passwordInput = page.locator('#password');
+const loginButton = page.locator('#login-button');
 
-      const errorMessage = await page // This is clearly now what i taught in the class. font use chatgpt anymore.
-        .locator('.error-message-container')
-        .textContent()
-      expect(errorMessage).toBe(expectedMessage) // toBe is validation for Jest framework. this is not a playwright assertion.
+
+await userNameInput.fill(username);
+await passwordInput.fill(password);
+
+
+await loginButton.click();
+
+
+ 
+const errorMessage = await page.locator('.error-message-container');
+
+
+await expect(errorMessage).toHaveText(expectedMessage);
+
     })
   }
 })
